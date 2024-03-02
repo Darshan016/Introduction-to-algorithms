@@ -13,6 +13,7 @@ public class LinkedList {
         second.next = third;
         third.next = fourth;
         linkedList.print();
+        System.out.println(linkedList.findLength());
     }
 
     public void print() {
@@ -21,7 +22,17 @@ public class LinkedList {
             System.out.print(current.data + " --> ");
             current = current.next;
         }
-        System.out.print("null");
+        System.out.println("null");
+    }
+
+    public int findLength() {
+        ListNode current = head;
+        int length = 0;
+        while (current != null) {
+            length++;
+            current = current.next;
+        }
+        return length;
     }
 
 }
