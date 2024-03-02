@@ -1,4 +1,4 @@
-package Arrays;
+package org.example.Arrays;
 
 // find the minimum element from an array
 public class FindMin {

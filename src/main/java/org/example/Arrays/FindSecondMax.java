@@ -1,4 +1,4 @@
-package Arrays;
+package org.example.Arrays;
 // find second maximum element from an array
 public class FindSecondMax {
     static int findMax(int[] arr){

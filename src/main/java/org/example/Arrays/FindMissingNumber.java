@@ -1,4 +1,4 @@
-package Arrays;
+package org.example.Arrays;
 
 // find missing number in an array. the elements will be in a range 1 to n.
 public class FindMissingNumber {

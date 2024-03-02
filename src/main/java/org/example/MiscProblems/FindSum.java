@@ -1,4 +1,4 @@
-package miscproblems;
+package org.example.MiscProblems;
 // find sum of n natural numbers
 
 public class FindSum {
