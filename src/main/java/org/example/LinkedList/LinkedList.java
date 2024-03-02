@@ -14,6 +14,8 @@ public class LinkedList {
         third.next = fourth;
         linkedList.addFirst(55);
         linkedList.addFirst(100);
+        linkedList.addLast(4);
+        linkedList.addLast(7);
         linkedList.print();
 //        System.out.println(linkedList.findLength());
     }
@@ -37,10 +39,23 @@ public class LinkedList {
         return length;
     }
 
-    public void addFirst(int value){
+    public void addFirst(int value) {
         ListNode listNode = new ListNode(value);
-        listNode.next=head;
-        head=listNode;
+        listNode.next = head;
+        head = listNode;
+    }
+
+    public void addLast(int value) {
+        ListNode listNode = new ListNode(value);
+        if (head == null) {
+            head = listNode;
+            return;
+        }
+        ListNode current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = listNode;
     }
 
 }
