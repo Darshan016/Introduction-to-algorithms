@@ -12,8 +12,10 @@ public class LinkedList {
         linkedList.head.next = second;
         second.next = third;
         third.next = fourth;
+        linkedList.addFirst(55);
+        linkedList.addFirst(100);
         linkedList.print();
-        System.out.println(linkedList.findLength());
+//        System.out.println(linkedList.findLength());
     }
 
     public void print() {
@@ -33,6 +35,12 @@ public class LinkedList {
             current = current.next;
         }
         return length;
+    }
+
+    public void addFirst(int value){
+        ListNode listNode = new ListNode(value);
+        listNode.next=head;
+        head=listNode;
     }
 
 }
