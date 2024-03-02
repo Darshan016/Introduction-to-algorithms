@@ -10,8 +10,18 @@ public class LinkedList {
         ListNode third = new ListNode(50);
         ListNode fourth = new ListNode(44);
         linkedList.head.next = second;
-        second.next=third;
-        third.next=fourth;
-        System.out.println(linkedList.head.data);
+        second.next = third;
+        third.next = fourth;
+        linkedList.print();
     }
+
+    public void print() {
+        ListNode current = head;
+        while (current != null) {
+            System.out.print(current.data + " --> ");
+            current = current.next;
+        }
+        System.out.print("null");
+    }
+
 }
