@@ -22,8 +22,9 @@ public class LinkedList {
         linkedList.addFirst(1);
 //        linkedList.addLast(7);
         linkedList.print();
-        linkedList.insertInSorted(6);
+//        linkedList.insertInSorted(6);
 //        linkedList.removeDuplicates();
+        linkedList.deleteByValue(34);
         linkedList.print();
 //        System.out.println(linkedList.findLength());
 //        linkedList.insertAt(4, 4);
@@ -220,6 +221,24 @@ public class LinkedList {
         listNode.next = current;
         temp.next = listNode;
 
+    }
+
+    public void deleteByValue(int value) {
+        if (head == null) {
+            return;
+        }
+        ListNode current = head;
+        ListNode temp = null;
+        while (current != null && current.data != value) {
+            temp = current;
+            current = current.next;
+        }
+        if (current == null) {
+            return;
+        } else {
+            temp.next = current.next;
+
+        }
     }
 
 }
