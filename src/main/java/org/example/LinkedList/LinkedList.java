@@ -22,8 +22,9 @@ public class LinkedList {
 //        linkedList.insertAt(4, 4);
 //        linkedList.deleteFirst();
 //        linkedList.deleteLast();
-        linkedList.deleteAt(8);
-        linkedList.print();
+//        linkedList.deleteAt(8);
+//        linkedList.print();
+        System.out.println(linkedList.searchNode(70));
 
     }
 
@@ -124,6 +125,19 @@ public class LinkedList {
         ListNode current = previous.next;
         previous.next = current.next;
 
+    }
+
+    public int searchNode(int value) {
+        ListNode current = head;
+        int index = 0;
+        while (current != null) {
+            if (current.data == value) {
+                return index;
+            }
+            current = current.next;
+            index++;
+        }
+        return -1;
     }
 
 }
