@@ -6,24 +6,36 @@ public class LinkedList {
 
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
-        linkedList.head = new ListNode(10);
-        ListNode second = new ListNode(20);
-        ListNode third = new ListNode(50);
-        ListNode fourth = new ListNode(44);
-        linkedList.head.next = second;
-        second.next = third;
-        third.next = fourth;
-        linkedList.addFirst(55);
-        linkedList.addFirst(100);
-        linkedList.addLast(4);
-        linkedList.addLast(7);
+//        linkedList.head = new ListNode(10);
+//        ListNode second = new ListNode(20);
+//        ListNode third = new ListNode(10);
+//        ListNode fourth = new ListNode(44);
+//        linkedList.head.next = second;
+//        second.next = third;
+//        third.next = fourth;
+//        linkedList.addFirst(55);
+//        linkedList.addFirst(10);
+//        linkedList.addLast(44);
+        linkedList.addFirst(8);
+        linkedList.addFirst(3);
+        linkedList.addFirst(2);
+        linkedList.addFirst(1);
+//        linkedList.addLast(7);
+        linkedList.print();
+//        linkedList.insertInSorted(6);
+//        linkedList.removeDuplicates();
+        linkedList.deleteByValue(34);
         linkedList.print();
 //        System.out.println(linkedList.findLength());
 //        linkedList.insertAt(4, 4);
 //        linkedList.deleteFirst();
 //        linkedList.deleteLast();
-        linkedList.deleteAt(8);
-        linkedList.print();
+//        linkedList.deleteAt(8);
+//        linkedList.reverse();
+//        System.out.println(linkedList.findMiddleElement());
+//        linkedList.print();
+//        System.out.println(linkedList.findNthElementFromEnd(7));
+//        System.out.println(linkedList.searchNode(70));
 
     }
 
@@ -124,6 +136,109 @@ public class LinkedList {
         ListNode current = previous.next;
         previous.next = current.next;
 
+    }
+
+    public int searchNode(int value) {
+        ListNode current = head;
+        int index = 0;
+        while (current != null) {
+            if (current.data == value) {
+                return index;
+            }
+            current = current.next;
+            index++;
+        }
+        return -1;
+    }
+
+    //1->2->3->4
+    public void reverse() {
+        ListNode current = head;
+        ListNode previous = null;
+        ListNode next = null;
+        while (current != null) {
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+        head = previous;
+    }
+
+    public int findMiddleElement() {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow.data;
+    }
+
+    public int findNthElementFromEnd(int n) {
+        if (n > this.findLength()) {
+            return -1;
+        }
+        ListNode main = head;
+        ListNode reference = head;
+        int count = 0;
+        while (count < n) {
+            reference = reference.next;
+            count++;
+        }
+        while (reference != null) {
+            reference = reference.next;
+            main = main.next;
+        }
+        return main.data;
+    }
+
+    public void removeDuplicates() {
+        if (head == null) {
+            return;
+        }
+        ListNode current = head;
+        while (current != null && current.next != null) {
+            if (current.data == current.next.data) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+    }
+
+    public void insertInSorted(int value) {
+        ListNode listNode = new ListNode(value);
+        if (head == null) {
+            head = listNode;
+        }
+        ListNode current = head;
+        ListNode temp = null;
+        while (current != null && current.data < value) {
+            temp = current;
+            current = current.next;
+        }
+        listNode.next = current;
+        temp.next = listNode;
+
+    }
+
+    public void deleteByValue(int value) {
+        if (head == null) {
+            return;
+        }
+        ListNode current = head;
+        ListNode temp = null;
+        while (current != null && current.data != value) {
+            temp = current;
+            current = current.next;
+        }
+        if (current == null) {
+            return;
+        } else {
+            temp.next = current.next;
+
+        }
     }
 
 }
