@@ -8,15 +8,17 @@ public class LinkedList {
         LinkedList linkedList = new LinkedList();
         linkedList.head = new ListNode(10);
         ListNode second = new ListNode(20);
-        ListNode third = new ListNode(50);
+        ListNode third = new ListNode(10);
         ListNode fourth = new ListNode(44);
         linkedList.head.next = second;
         second.next = third;
         third.next = fourth;
         linkedList.addFirst(55);
-        linkedList.addFirst(100);
-        linkedList.addLast(4);
+        linkedList.addFirst(10);
+        linkedList.addLast(44);
 //        linkedList.addLast(7);
+        linkedList.print();
+        linkedList.removeDuplicates();
         linkedList.print();
 //        System.out.println(linkedList.findLength());
 //        linkedList.insertAt(4, 4);
@@ -26,7 +28,7 @@ public class LinkedList {
 //        linkedList.reverse();
 //        System.out.println(linkedList.findMiddleElement());
 //        linkedList.print();
-        System.out.println(linkedList.findNthElementFromEnd(7));
+//        System.out.println(linkedList.findNthElementFromEnd(7));
 //        System.out.println(linkedList.searchNode(70));
 
     }
@@ -183,6 +185,20 @@ public class LinkedList {
             main = main.next;
         }
         return main.data;
+    }
+
+    public void removeDuplicates() {
+        if (head == null) {
+            return;
+        }
+        ListNode current = head;
+        while (current != null && current.next != null) {
+            if (current.data == current.next.data) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
     }
 
 }
