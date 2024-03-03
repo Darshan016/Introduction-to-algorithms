@@ -24,8 +24,9 @@ public class LinkedList {
 //        linkedList.deleteLast();
 //        linkedList.deleteAt(8);
 //        linkedList.reverse();
-        System.out.println(linkedList.findMiddleElement());
+//        System.out.println(linkedList.findMiddleElement());
 //        linkedList.print();
+        System.out.println(linkedList.findNthElementFromEnd(7));
 //        System.out.println(linkedList.searchNode(70));
 
     }
@@ -156,14 +157,32 @@ public class LinkedList {
         head = previous;
     }
 
-    public int findMiddleElement(){
+    public int findMiddleElement() {
         ListNode fast = head;
         ListNode slow = head;
-        while (fast!=null && fast.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
         return slow.data;
+    }
+
+    public int findNthElementFromEnd(int n) {
+        if (n > this.findLength()) {
+            return -1;
+        }
+        ListNode main = head;
+        ListNode reference = head;
+        int count = 0;
+        while (count < n) {
+            reference = reference.next;
+            count++;
+        }
+        while (reference != null) {
+            reference = reference.next;
+            main = main.next;
+        }
+        return main.data;
     }
 
 }
