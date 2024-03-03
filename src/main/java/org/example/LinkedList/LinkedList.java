@@ -16,15 +16,16 @@ public class LinkedList {
         linkedList.addFirst(55);
         linkedList.addFirst(100);
         linkedList.addLast(4);
-        linkedList.addLast(7);
+//        linkedList.addLast(7);
         linkedList.print();
 //        System.out.println(linkedList.findLength());
 //        linkedList.insertAt(4, 4);
 //        linkedList.deleteFirst();
 //        linkedList.deleteLast();
 //        linkedList.deleteAt(8);
-        linkedList.reverse();
-        linkedList.print();
+//        linkedList.reverse();
+        System.out.println(linkedList.findMiddleElement());
+//        linkedList.print();
 //        System.out.println(linkedList.searchNode(70));
 
     }
@@ -153,6 +154,16 @@ public class LinkedList {
             current = next;
         }
         head = previous;
+    }
+
+    public int findMiddleElement(){
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow.data;
     }
 
 }
