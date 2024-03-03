@@ -1,5 +1,6 @@
 package org.example.LinkedList;
 
+
 public class LinkedList {
     private ListNode head;
 
@@ -20,7 +21,8 @@ public class LinkedList {
 //        System.out.println(linkedList.findLength());
 //        linkedList.insertAt(4, 4);
 //        linkedList.deleteFirst();
-        linkedList.deleteLast();
+//        linkedList.deleteLast();
+        linkedList.deleteAt(8);
         linkedList.print();
 
     }
@@ -103,6 +105,25 @@ public class LinkedList {
         }
         previous.next = null;
         return current;
+    }
+
+    public void deleteAt(int position) {
+        if (position == 0) {
+            head = head.next;
+            return;
+        }
+        if (position >= this.findLength() || position < 0) {
+            return;
+        }
+        ListNode previous = head;
+        int index = 0;
+        while (index < position - 1) {
+            previous = previous.next;
+            index++;
+        }
+        ListNode current = previous.next;
+        previous.next = current.next;
+
     }
 
 }
