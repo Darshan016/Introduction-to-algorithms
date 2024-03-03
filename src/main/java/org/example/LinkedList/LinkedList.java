@@ -6,19 +6,24 @@ public class LinkedList {
 
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
-        linkedList.head = new ListNode(10);
-        ListNode second = new ListNode(20);
-        ListNode third = new ListNode(10);
-        ListNode fourth = new ListNode(44);
-        linkedList.head.next = second;
-        second.next = third;
-        third.next = fourth;
-        linkedList.addFirst(55);
-        linkedList.addFirst(10);
-        linkedList.addLast(44);
+//        linkedList.head = new ListNode(10);
+//        ListNode second = new ListNode(20);
+//        ListNode third = new ListNode(10);
+//        ListNode fourth = new ListNode(44);
+//        linkedList.head.next = second;
+//        second.next = third;
+//        third.next = fourth;
+//        linkedList.addFirst(55);
+//        linkedList.addFirst(10);
+//        linkedList.addLast(44);
+        linkedList.addFirst(8);
+        linkedList.addFirst(3);
+        linkedList.addFirst(2);
+        linkedList.addFirst(1);
 //        linkedList.addLast(7);
         linkedList.print();
-        linkedList.removeDuplicates();
+        linkedList.insertInSorted(6);
+//        linkedList.removeDuplicates();
         linkedList.print();
 //        System.out.println(linkedList.findLength());
 //        linkedList.insertAt(4, 4);
@@ -199,6 +204,22 @@ public class LinkedList {
                 current = current.next;
             }
         }
+    }
+
+    public void insertInSorted(int value) {
+        ListNode listNode = new ListNode(value);
+        if (head == null) {
+            head = listNode;
+        }
+        ListNode current = head;
+        ListNode temp = null;
+        while (current != null && current.data < value) {
+            temp = current;
+            current = current.next;
+        }
+        listNode.next = current;
+        temp.next = listNode;
+
     }
 
 }
