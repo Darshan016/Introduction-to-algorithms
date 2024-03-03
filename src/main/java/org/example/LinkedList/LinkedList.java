@@ -1,5 +1,6 @@
 package org.example.LinkedList;
 
+
 public class LinkedList {
     private ListNode head;
 
@@ -18,6 +19,12 @@ public class LinkedList {
         linkedList.addLast(7);
         linkedList.print();
 //        System.out.println(linkedList.findLength());
+//        linkedList.insertAt(4, 4);
+//        linkedList.deleteFirst();
+//        linkedList.deleteLast();
+        linkedList.deleteAt(8);
+        linkedList.print();
+
     }
 
     public void print() {
@@ -56,6 +63,67 @@ public class LinkedList {
             current = current.next;
         }
         current.next = listNode;
+    }
+
+    public void insertAt(int value, int position) {
+        ListNode listNode = new ListNode(value);
+        if (position == 0) {
+            listNode.next = head;
+            head = listNode;
+        } else {
+            ListNode previous = head;
+            int index = 0;
+            while (index < position - 1) {
+                previous = previous.next;
+                index++;
+            }
+            ListNode current = previous.next;
+            listNode.next = current;
+            previous.next = listNode;
+        }
+    }
+
+    public ListNode deleteFirst() {
+        if (head == null) {
+            return null;
+        }
+        ListNode temp = head;
+        head = head.next;
+        temp.next = null;
+        return temp;
+    }
+
+    public ListNode deleteLast() {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode current = head;
+        ListNode previous = null;
+        while (current.next != null) {
+            previous = current;
+            current = current.next;
+        }
+        previous.next = null;
+        return current;
+    }
+
+    public void deleteAt(int position) {
+        if (position == 0) {
+            head = head.next;
+            return;
+        }
+        if (position >= this.findLength() || position < 0) {
+            return;
+        }
+        ListNode previous = head;
+        int index = 0;
+        while (index < position - 1) {
+            previous = previous.next;
+            index++;
+        }
+        ListNode current = previous.next;
+        previous.next = current.next;
+
     }
 
 }
