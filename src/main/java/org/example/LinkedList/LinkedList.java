@@ -18,6 +18,9 @@ public class LinkedList {
         linkedList.addLast(7);
         linkedList.print();
 //        System.out.println(linkedList.findLength());
+        linkedList.insertAt(4, 4);
+        linkedList.print();
+
     }
 
     public void print() {
@@ -56,6 +59,24 @@ public class LinkedList {
             current = current.next;
         }
         current.next = listNode;
+    }
+
+    public void insertAt(int value, int position) {
+        ListNode listNode = new ListNode(value);
+        if (position == 0) {
+            listNode.next = head;
+            head = listNode;
+        } else {
+            ListNode previous = head;
+            int index = 0;
+            while (index < position - 1) {
+                previous = previous.next;
+                index++;
+            }
+            ListNode current = previous.next;
+            listNode.next = current;
+            previous.next = listNode;
+        }
     }
 
 }
