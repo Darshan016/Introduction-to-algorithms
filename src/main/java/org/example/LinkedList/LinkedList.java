@@ -23,8 +23,9 @@ public class LinkedList {
 //        linkedList.deleteFirst();
 //        linkedList.deleteLast();
 //        linkedList.deleteAt(8);
-//        linkedList.print();
-        System.out.println(linkedList.searchNode(70));
+        linkedList.reverse();
+        linkedList.print();
+//        System.out.println(linkedList.searchNode(70));
 
     }
 
@@ -138,6 +139,20 @@ public class LinkedList {
             index++;
         }
         return -1;
+    }
+
+    //1->2->3->4
+    public void reverse() {
+        ListNode current = head;
+        ListNode previous = null;
+        ListNode next = null;
+        while (current != null) {
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+        head = previous;
     }
 
 }
