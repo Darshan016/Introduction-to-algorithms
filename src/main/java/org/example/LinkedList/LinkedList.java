@@ -19,7 +19,8 @@ public class LinkedList {
         linkedList.print();
 //        System.out.println(linkedList.findLength());
 //        linkedList.insertAt(4, 4);
-        linkedList.deleteFirst();
+//        linkedList.deleteFirst();
+        linkedList.deleteLast();
         linkedList.print();
 
     }
@@ -80,14 +81,28 @@ public class LinkedList {
         }
     }
 
-    public ListNode deleteFirst(){
-        if (head==null){
+    public ListNode deleteFirst() {
+        if (head == null) {
             return null;
         }
         ListNode temp = head;
-        head=head.next;
-        temp.next=null;
+        head = head.next;
+        temp.next = null;
         return temp;
+    }
+
+    public ListNode deleteLast() {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode current = head;
+        ListNode previous = null;
+        while (current.next != null) {
+            previous = current;
+            current = current.next;
+        }
+        previous.next = null;
+        return current;
     }
 
 }
