@@ -18,7 +18,8 @@ public class LinkedList {
         linkedList.addLast(7);
         linkedList.print();
 //        System.out.println(linkedList.findLength());
-        linkedList.insertAt(4, 4);
+//        linkedList.insertAt(4, 4);
+        linkedList.deleteFirst();
         linkedList.print();
 
     }
@@ -77,6 +78,16 @@ public class LinkedList {
             listNode.next = current;
             previous.next = listNode;
         }
+    }
+
+    public ListNode deleteFirst(){
+        if (head==null){
+            return null;
+        }
+        ListNode temp = head;
+        head=head.next;
+        temp.next=null;
+        return temp;
     }
 
 }
