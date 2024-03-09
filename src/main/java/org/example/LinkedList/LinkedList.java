@@ -23,7 +23,7 @@ public class LinkedList {
 //        linkedList.addFirst(2);
 //        linkedList.addFirst(1);
 //        linkedList.addLast(7);
-        linkedList.createALoopInLinkedList();
+//        linkedList.createALoopInLinkedList();
 //        linkedList.print();
 //        linkedList.insertInSorted(6);
 //        linkedList.removeDuplicates();
@@ -41,10 +41,25 @@ public class LinkedList {
 //        System.out.println(linkedList.searchNode(70));
 //        ListNode ans=linkedList.getStartingNodeOfLoop();
 //        System.out.println(ans.data);
-        System.out.println(linkedList.detectLoop());
-        linkedList.removeLoop();
-        System.out.println(linkedList.detectLoop());
-        linkedList.print();
+//        System.out.println(linkedList.detectLoop());
+//        linkedList.removeLoop();
+//        System.out.println(linkedList.detectLoop());
+//        linkedList.print();
+        LinkedList l1 = new LinkedList();
+        LinkedList l2 = new LinkedList();
+        l1.addFirst(9);
+        l1.addFirst(6);
+        l1.addFirst(4);
+        l1.addFirst(2);
+        l2.addFirst(8);
+        l2.addFirst(5);
+        l2.addFirst(3);
+        l1.print();
+        l2.print();
+        LinkedList l3 = new LinkedList();
+        l3.head = mergeTwoSortedLists(l1.head,l2.head);
+        l3.print();
+
     }
 
     public void print() {
@@ -322,6 +337,28 @@ public class LinkedList {
             slow = slow.next;
         }
         slow.next = null;
+    }
+
+    public static ListNode mergeTwoSortedLists(ListNode head1, ListNode head2){
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        while(head1!=null && head2!=null){
+            if(head1.data<head2.data){
+                tail.next=head1;
+                head1=head1.next;
+            }else{
+                tail.next=head2;
+                head2=head2.next;
+            }
+            tail=tail.next;
+        }
+        if (head1==null){
+            tail.next=head2;
+
+        }else {
+            tail.next=head1;
+        }
+        return dummy.next;
     }
 
 }
