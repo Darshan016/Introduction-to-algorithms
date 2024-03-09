@@ -1,6 +1,8 @@
 package org.example.LinkedList;
 
 
+import java.util.List;
+
 public class LinkedList {
     private ListNode head;
 
@@ -37,9 +39,12 @@ public class LinkedList {
 //        linkedList.print();
 //        System.out.println(linkedList.findNthElementFromEnd(7));
 //        System.out.println(linkedList.searchNode(70));
-        ListNode ans=linkedList.getStartingNodeOfLoop();
-        System.out.println(ans.data);
-
+//        ListNode ans=linkedList.getStartingNodeOfLoop();
+//        System.out.println(ans.data);
+        System.out.println(linkedList.detectLoop());
+        linkedList.removeLoop();
+        System.out.println(linkedList.detectLoop());
+        linkedList.print();
     }
 
     public void print() {
@@ -244,43 +249,43 @@ public class LinkedList {
         }
     }
 
-    public void createALoopInLinkedList(){
+    public void createALoopInLinkedList() {
         ListNode first = new ListNode(1);
         ListNode second = new ListNode(2);
         ListNode third = new ListNode(3);
         ListNode fourth = new ListNode(4);
         ListNode fifth = new ListNode(5);
         ListNode sixth = new ListNode(6);
-        head=first;
-        first.next=second;
-        second.next=third;
-        third.next=fourth;
-        fourth.next=fifth;
-        fifth.next=sixth;
-        sixth.next=third;
+        head = first;
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+        fourth.next = fifth;
+        fifth.next = sixth;
+        sixth.next = third;
 
     }
 
-    public boolean detectLoop(){
+    public boolean detectLoop() {
         ListNode fast = head;
         ListNode slow = head;
-        while (fast!=null && fast.next!=null){
-            fast=fast.next.next;
-            slow=slow.next;
-            if(fast==slow){
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
                 return true;
             }
         }
         return false;
     }
 
-    public ListNode getStartingNodeOfLoop() throws NullPointerException{
+    public ListNode getStartingNodeOfLoop() throws NullPointerException {
         ListNode fast = head;
         ListNode slow = head;
-        while(fast!=null && fast.next!=null){
-            fast=fast.next.next;
-            slow=slow.next;
-            if(fast==slow){
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
                 return getStartingNode(slow);
             }
         }
@@ -288,13 +293,35 @@ public class LinkedList {
 //        return null;
     }
 
-    public ListNode getStartingNode(ListNode slow){
+    public ListNode getStartingNode(ListNode slow) {
         ListNode temp = head;
-        while(slow!=temp){
-            temp=temp.next;
-            slow=slow.next;
+        while (slow != temp) {
+            temp = temp.next;
+            slow = slow.next;
         }
         return temp;
+    }
+
+    public void removeLoop() {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                remove(slow);
+                return;
+            }
+        }
+    }
+
+    public void remove(ListNode slow) {
+        ListNode temp = head;
+        while (slow.next != temp.next) {
+            temp = temp.next;
+            slow = slow.next;
+        }
+        slow.next = null;
     }
 
 }
