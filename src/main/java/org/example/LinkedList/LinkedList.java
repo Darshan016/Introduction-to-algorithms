@@ -37,7 +37,8 @@ public class LinkedList {
 //        linkedList.print();
 //        System.out.println(linkedList.findNthElementFromEnd(7));
 //        System.out.println(linkedList.searchNode(70));
-        System.out.println(linkedList.detectLoop());
+        ListNode ans=linkedList.getStartingNodeOfLoop();
+        System.out.println(ans.data);
 
     }
 
@@ -271,6 +272,29 @@ public class LinkedList {
             }
         }
         return false;
+    }
+
+    public ListNode getStartingNodeOfLoop() throws NullPointerException{
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+            if(fast==slow){
+                return getStartingNode(slow);
+            }
+        }
+        throw new NullPointerException("null value");
+//        return null;
+    }
+
+    public ListNode getStartingNode(ListNode slow){
+        ListNode temp = head;
+        while(slow!=temp){
+            temp=temp.next;
+            slow=slow.next;
+        }
+        return temp;
     }
 
 }
