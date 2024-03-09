@@ -1,6 +1,8 @@
 package org.example.LinkedList;
 
 
+import java.util.List;
+
 public class LinkedList {
     private ListNode head;
 
@@ -16,16 +18,17 @@ public class LinkedList {
 //        linkedList.addFirst(55);
 //        linkedList.addFirst(10);
 //        linkedList.addLast(44);
-        linkedList.addFirst(8);
-        linkedList.addFirst(3);
-        linkedList.addFirst(2);
-        linkedList.addFirst(1);
+//        linkedList.addFirst(8);
+//        linkedList.addFirst(3);
+//        linkedList.addFirst(2);
+//        linkedList.addFirst(1);
 //        linkedList.addLast(7);
-        linkedList.print();
+//        linkedList.createALoopInLinkedList();
+//        linkedList.print();
 //        linkedList.insertInSorted(6);
 //        linkedList.removeDuplicates();
-        linkedList.deleteByValue(34);
-        linkedList.print();
+//        linkedList.deleteByValue(3);
+//        linkedList.print();
 //        System.out.println(linkedList.findLength());
 //        linkedList.insertAt(4, 4);
 //        linkedList.deleteFirst();
@@ -36,6 +39,26 @@ public class LinkedList {
 //        linkedList.print();
 //        System.out.println(linkedList.findNthElementFromEnd(7));
 //        System.out.println(linkedList.searchNode(70));
+//        ListNode ans=linkedList.getStartingNodeOfLoop();
+//        System.out.println(ans.data);
+//        System.out.println(linkedList.detectLoop());
+//        linkedList.removeLoop();
+//        System.out.println(linkedList.detectLoop());
+//        linkedList.print();
+        LinkedList l1 = new LinkedList();
+        LinkedList l2 = new LinkedList();
+        l1.addFirst(9);
+        l1.addFirst(6);
+        l1.addFirst(4);
+        l1.addFirst(2);
+        l2.addFirst(8);
+        l2.addFirst(5);
+        l2.addFirst(3);
+        l1.print();
+        l2.print();
+        LinkedList l3 = new LinkedList();
+        l3.head = mergeTwoSortedLists(l1.head,l2.head);
+        l3.print();
 
     }
 
@@ -239,6 +262,103 @@ public class LinkedList {
             temp.next = current.next;
 
         }
+    }
+
+    public void createALoopInLinkedList() {
+        ListNode first = new ListNode(1);
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+        ListNode fourth = new ListNode(4);
+        ListNode fifth = new ListNode(5);
+        ListNode sixth = new ListNode(6);
+        head = first;
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+        fourth.next = fifth;
+        fifth.next = sixth;
+        sixth.next = third;
+
+    }
+
+    public boolean detectLoop() {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ListNode getStartingNodeOfLoop() throws NullPointerException {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                return getStartingNode(slow);
+            }
+        }
+        throw new NullPointerException("null value");
+//        return null;
+    }
+
+    public ListNode getStartingNode(ListNode slow) {
+        ListNode temp = head;
+        while (slow != temp) {
+            temp = temp.next;
+            slow = slow.next;
+        }
+        return temp;
+    }
+
+    public void removeLoop() {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                remove(slow);
+                return;
+            }
+        }
+    }
+
+    public void remove(ListNode slow) {
+        ListNode temp = head;
+        while (slow.next != temp.next) {
+            temp = temp.next;
+            slow = slow.next;
+        }
+        slow.next = null;
+    }
+
+    public static ListNode mergeTwoSortedLists(ListNode head1, ListNode head2){
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        while(head1!=null && head2!=null){
+            if(head1.data<head2.data){
+                tail.next=head1;
+                head1=head1.next;
+            }else{
+                tail.next=head2;
+                head2=head2.next;
+            }
+            tail=tail.next;
+        }
+        if (head1==null){
+            tail.next=head2;
+
+        }else {
+            tail.next=head1;
+        }
+        return dummy.next;
     }
 
 }
