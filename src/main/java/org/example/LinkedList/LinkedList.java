@@ -16,16 +16,17 @@ public class LinkedList {
 //        linkedList.addFirst(55);
 //        linkedList.addFirst(10);
 //        linkedList.addLast(44);
-        linkedList.addFirst(8);
-        linkedList.addFirst(3);
-        linkedList.addFirst(2);
-        linkedList.addFirst(1);
+//        linkedList.addFirst(8);
+//        linkedList.addFirst(3);
+//        linkedList.addFirst(2);
+//        linkedList.addFirst(1);
 //        linkedList.addLast(7);
-        linkedList.print();
+        linkedList.createALoopInLinkedList();
+//        linkedList.print();
 //        linkedList.insertInSorted(6);
 //        linkedList.removeDuplicates();
-        linkedList.deleteByValue(34);
-        linkedList.print();
+//        linkedList.deleteByValue(3);
+//        linkedList.print();
 //        System.out.println(linkedList.findLength());
 //        linkedList.insertAt(4, 4);
 //        linkedList.deleteFirst();
@@ -36,6 +37,7 @@ public class LinkedList {
 //        linkedList.print();
 //        System.out.println(linkedList.findNthElementFromEnd(7));
 //        System.out.println(linkedList.searchNode(70));
+        System.out.println(linkedList.detectLoop());
 
     }
 
@@ -239,6 +241,36 @@ public class LinkedList {
             temp.next = current.next;
 
         }
+    }
+
+    public void createALoopInLinkedList(){
+        ListNode first = new ListNode(1);
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+        ListNode fourth = new ListNode(4);
+        ListNode fifth = new ListNode(5);
+        ListNode sixth = new ListNode(6);
+        head=first;
+        first.next=second;
+        second.next=third;
+        third.next=fourth;
+        fourth.next=fifth;
+        fifth.next=sixth;
+        sixth.next=third;
+
+    }
+
+    public boolean detectLoop(){
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+            if(fast==slow){
+                return true;
+            }
+        }
+        return false;
     }
 
 }
