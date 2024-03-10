@@ -83,7 +83,21 @@ public class DoublyLinkedList {
         temp.next = null;
         length--;
         return temp;
+    }
 
-
+    public ListNode deleteLast() {
+        if (isEmpty()) {
+            return null;
+        }
+        ListNode temp = tail;
+        if (head == tail) {
+            head = null;
+        } else {
+            tail.previous.next = null;
+        }
+        tail = tail.previous;
+        temp.previous = null;
+        length--;
+        return temp;
     }
 }
