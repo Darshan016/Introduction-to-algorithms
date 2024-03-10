@@ -45,24 +45,26 @@ public class LinkedList {
 //        linkedList.removeLoop();
 //        System.out.println(linkedList.detectLoop());
 //        linkedList.print();
-        LinkedList l1 = new LinkedList();
-        LinkedList l2 = new LinkedList();
-        l1.addFirst(9);
-        l1.addFirst(6);
-        l1.addFirst(4);
-        l1.addFirst(2);
-        System.out.println(l1.findMiddleElement());
+//        LinkedList l1 = new LinkedList();
+//        LinkedList l2 = new LinkedList();
+//        l1.addFirst(9);
+//        l1.addFirst(6);
+//        l1.addFirst(4);
+//        l1.addFirst(2);
+//        System.out.println(l1.findMiddleElement());
 //        l2.addFirst(8);
 //        l2.addFirst(5);
 //        l2.addFirst(3);
-        l1.print();
-        l1.deleteMiddleElement();
-        l1.print();
+//        l1.print();
+//        l1.deleteMiddleElement();
+//        l1.print();
 //        l2.print();
 //        LinkedList l3 = new LinkedList();
 //        l3.head = mergeTwoSortedLists(l1.head,l2.head);
 //        l3.head = addTwoNumbers(l1.head, l2.head);
 //        l3.print();
+        linkedList.createALoopInLinkedList();
+        System.out.println(linkedList.findLengthOfLoop());
 
     }
 
@@ -395,6 +397,29 @@ public class LinkedList {
             fast = fast.next.next;
         }
         previous.next = slow.next;
+    }
+
+    public int findLengthOfLoop() {
+        ListNode fast = head;
+        ListNode slow = head;
+        int count = 0;
+        boolean loopExists = false;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                loopExists = true;
+                break;
+            }
+        }
+        if (loopExists) {
+            do {
+                slow = slow.next;
+                count++;
+            } while (slow != fast);
+        }
+        return count;
+
     }
 
 }
