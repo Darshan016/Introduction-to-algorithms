@@ -51,15 +51,18 @@ public class LinkedList {
         l1.addFirst(6);
         l1.addFirst(4);
         l1.addFirst(2);
-        l2.addFirst(8);
-        l2.addFirst(5);
-        l2.addFirst(3);
+        System.out.println(l1.findMiddleElement());
+//        l2.addFirst(8);
+//        l2.addFirst(5);
+//        l2.addFirst(3);
         l1.print();
-        l2.print();
-        LinkedList l3 = new LinkedList();
+        l1.deleteMiddleElement();
+        l1.print();
+//        l2.print();
+//        LinkedList l3 = new LinkedList();
 //        l3.head = mergeTwoSortedLists(l1.head,l2.head);
-        l3.head = addTwoNumbers(l1.head, l2.head);
-        l3.print();
+//        l3.head = addTwoNumbers(l1.head, l2.head);
+//        l3.print();
 
     }
 
@@ -380,6 +383,18 @@ public class LinkedList {
             tail.next = new ListNode(carry);
         }
         return dummy.next;
+    }
+
+    public void deleteMiddleElement() {
+        ListNode fast = head;
+        ListNode slow = head;
+        ListNode previous = slow;
+        while (fast != null && fast.next != null) {
+            previous = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        previous.next = slow.next;
     }
 
 }
