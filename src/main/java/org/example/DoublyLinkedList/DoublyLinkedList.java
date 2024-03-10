@@ -67,4 +67,23 @@ public class DoublyLinkedList {
         tail = listNode;
         length++;
     }
+
+    //delete first element of the list
+    public ListNode deleteFirst() {
+        if (isEmpty()) {
+            return null;
+        }
+        ListNode temp = head;
+        if (head == tail) {
+            tail = null;
+        } else {
+            head.next.previous = null;
+        }
+        head = head.next;
+        temp.next = null;
+        length--;
+        return temp;
+
+
+    }
 }
