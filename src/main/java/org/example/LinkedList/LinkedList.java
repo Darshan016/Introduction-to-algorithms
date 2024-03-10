@@ -57,7 +57,8 @@ public class LinkedList {
         l1.print();
         l2.print();
         LinkedList l3 = new LinkedList();
-        l3.head = mergeTwoSortedLists(l1.head,l2.head);
+//        l3.head = mergeTwoSortedLists(l1.head,l2.head);
+        l3.head = addTwoNumbers(l1.head, l2.head);
         l3.print();
 
     }
@@ -339,24 +340,44 @@ public class LinkedList {
         slow.next = null;
     }
 
-    public static ListNode mergeTwoSortedLists(ListNode head1, ListNode head2){
+    public static ListNode mergeTwoSortedLists(ListNode head1, ListNode head2) {
         ListNode dummy = new ListNode(0);
         ListNode tail = dummy;
-        while(head1!=null && head2!=null){
-            if(head1.data<head2.data){
-                tail.next=head1;
-                head1=head1.next;
-            }else{
-                tail.next=head2;
-                head2=head2.next;
+        while (head1 != null && head2 != null) {
+            if (head1.data < head2.data) {
+                tail.next = head1;
+                head1 = head1.next;
+            } else {
+                tail.next = head2;
+                head2 = head2.next;
             }
-            tail=tail.next;
+            tail = tail.next;
         }
-        if (head1==null){
-            tail.next=head2;
+        if (head1 == null) {
+            tail.next = head2;
 
-        }else {
-            tail.next=head1;
+        } else {
+            tail.next = head1;
+        }
+        return dummy.next;
+    }
+
+    public static ListNode addTwoNumbers(ListNode a, ListNode b) {
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        int carry = 0;
+        while (a != null || b != null) {
+            int x = (a != null) ? a.data : 0;
+            int y = (b != null) ? b.data : 0;
+            int sum = carry + x + y;
+            carry = sum / 10;
+            tail.next = new ListNode(sum % 10);
+            tail = tail.next;
+            if (a != null) a = a.next;
+            if (b != null) b = b.next;
+        }
+        if (carry > 0) {
+            tail.next = new ListNode(carry);
         }
         return dummy.next;
     }
