@@ -54,4 +54,18 @@ public class Queue {
         length--;
         return result;
     }
+
+    public int first() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
+        }
+        return front.data;
+    }
+
+    public int last() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
+        }
+        return rear.data;
+    }
 }
