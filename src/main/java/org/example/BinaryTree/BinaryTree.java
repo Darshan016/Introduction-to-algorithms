@@ -1,5 +1,7 @@
 package org.example.BinaryTree;
 
+import com.sun.source.tree.Tree;
+
 import java.util.Stack;
 
 public class BinaryTree {
@@ -44,5 +46,14 @@ public class BinaryTree {
                 stack.push(temp.left);
             }
         }
+    }
+
+    public void inOrderTraversal(TreeNode root){
+        if (root == null){
+            return;
+        }
+        inOrderTraversal(root.left);
+        System.out.print(root.data+" ");
+        inOrderTraversal(root.right);
     }
 }
