@@ -1,7 +1,5 @@
 package org.example.BinaryTree;
 
-import com.sun.source.tree.Tree;
-
 import java.util.Stack;
 
 public class BinaryTree {
@@ -73,5 +71,14 @@ public class BinaryTree {
                 temp = temp.right;
             }
         }
+    }
+
+    public void postOrderTraversal(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        postOrderTraversal(root.left);
+        postOrderTraversal(root.right);
+        System.out.print(root.data + " ");
     }
 }
