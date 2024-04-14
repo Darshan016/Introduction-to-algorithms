@@ -28,4 +28,19 @@ public class BinarySearchTree {
         System.out.print(root.data + " ");
         inOrder(root.right);
     }
+
+    public TreeNode search(int value) {
+        return search(root, value);
+    }
+
+    public TreeNode search(TreeNode root, int value) {
+        if (root == null || root.data == value) {
+            return root;
+        }
+        if (value < root.data) {
+            return search(root.left, value);
+        } else {
+            return search(root.right, value);
+        }
+    }
 }
