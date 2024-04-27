@@ -16,7 +16,7 @@ public class BubbleSort {
                 }
 
             }
-            if (isSwapped == false) break;
+            if (!isSwapped) break;
         }
     }
 
